@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    window.onerror = function (msg, url, line, col, error) {
+      var div = document.getElementById('emergency-check');
+      if (div) {
+        div.style.width = 'auto';
+        div.style.height = 'auto';
+        div.style.padding = '10px';
+        div.style.color = 'white';
+        div.style.fontSize = '12px';
+        div.innerHTML = 'Error: ' + msg + '<br>Line: ' + line;
+      }
+      return false;
+    };
+  </script>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Vision+ | Olhos Digitais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-left-color: #facc15;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body style="background: #000;">
+  <div id="emergency-check"
+    style="position:fixed; top:0; left:0; width:10px; height:10px; background:red; z-index:9999;"></div>
+  <div id="root"></div>
+  <script type="module" src="./src/main.jsx"></script>
+</body>
+
+</html>

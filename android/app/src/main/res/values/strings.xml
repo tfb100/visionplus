@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">VisionPlus</string>
+    <string name="title_activity_main">VisionPlus</string>
+    <string name="package_name">com.visionplus.app</string>
+    <string name="custom_url_scheme">com.visionplus.app</string>
+</resources>

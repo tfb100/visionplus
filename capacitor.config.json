@@ -1,0 +1,9 @@
+{
+  "appId": "com.visionplus.app",
+  "appName": "VisionPlus",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "loggingBehavior": "debug"
+}
