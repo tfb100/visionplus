@@ -9,6 +9,10 @@ class SpeechService {
   }
 
   async speak(text, priority = false) {
+    if (this.isSpeakingNow && !priority) return;
+
+    this.isSpeakingNow = true;
+
     if (this.isNative) {
       try {
         await TextToSpeech.speak({
@@ -17,23 +21,32 @@ class SpeechService {
           rate: this.rate,
           category: 'ambient',
         });
+        this.isSpeakingNow = false;
         return;
       } catch (e) {
         console.error('Native TTS failed, falling back to web:', e);
+        this.isSpeakingNow = false;
       }
     }
 
     // Web Fallback
     if (this.synth) {
       if (priority) this.synth.cancel();
-      if (this.synth.speaking && !priority) return;
 
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = this.lang;
       utterance.rate = this.rate;
+      utterance.onend = () => {
+        this.isSpeakingNow = false;
+      };
+      utterance.onerror = () => {
+        this.isSpeakingNow = false;
+      };
+
       this.synth.speak(utterance);
     } else {
       console.warn('TTS não disponível:', text);
+      this.isSpeakingNow = false;
     }
   }
 
